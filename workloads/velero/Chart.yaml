@@ -1,0 +1,7 @@
+apiVersion: v2
+name: velero
+version: 2.24.0 # Keeps parity with the parent chart https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/Chart.yaml
+dependencies:
+  - name: velero
+    version: 2.24.0
+    repository: https://vmware-tanzu.github.io/helm-charts

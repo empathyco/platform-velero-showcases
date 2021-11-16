@@ -1,0 +1,15 @@
+ghost:
+  ghostUsername: admin
+  # Insert a very strong password
+  ghostPassword: "K8sDevDays"
+  ghostEmail: admin@empathy.co
+
+  service: 
+    type: ClusterIP
+
+  mariadb:
+    auth:
+      # Insert a very strong password
+      rootPassword: "root_password"
+      # Insert a very strong password
+      password: "db_password"

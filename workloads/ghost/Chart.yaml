@@ -1,0 +1,7 @@
+apiVersion: v2
+name: ghost
+version: 15.0.10 # Keeps parity with the parent chart https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/Chart.yaml
+dependencies:
+  - name: ghost
+    version: 15.0.10
+    repository: https://charts.bitnami.com/bitnami

@@ -1,0 +1,6 @@
+dependencies:
+- name: ghost
+  repository: https://charts.bitnami.com/bitnami
+  version: 15.0.10
+digest: sha256:6c8eaa81bbb9fd23b82654a20b7c82659d6efbbe96a10083bd4cd8b525f3a679
+generated: "2021-11-10T14:42:43.941956+01:00"
