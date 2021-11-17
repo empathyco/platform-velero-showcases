@@ -17,12 +17,14 @@ Kubernetes Backup and Migration Strategies with Velero
 - [References](#references)
 
 
-
 The motivation of this repository is to show some Velero use cases:
 * Disaster recovery
 * Data migration 
 
 In this repo a disaster recovery on EKS will be tested and a data migration between EKS and GKE will be showed. 
+
+Generic Velero workflow is as follows:
+![](img/generic.png)
 
 # Requirements
 
@@ -146,6 +148,8 @@ gcloud container clusters create cluster3 \
 
 Everything can fails, and Velero help us to recover from a disaster recovery. For this sample, the goal will be recover a namespace in other EKS cluster from a previous Velero backup. A sample diagram would be as follows:
 
+![](img/disaster-recovery.png)
+
 ## Show me the code
 
 ```sh
@@ -176,7 +180,7 @@ velero restore describe xxxx
 
 Sometimes for business reasons, data should be migrated between cloud providers. Because the snapshot API between the different cloud providers doesn't interact between each other an agnostic layer is needed. Restic help us to provide this file system level agnosticism and allow interact file system between cloud providers.
 A sample workflow would be as follows:
-
+![](img/data-migration.png)
 
 ## Show me the code
 ```sh
@@ -194,7 +198,7 @@ velero backup describe cluster2 --details
 
 # Install Velero with Restic on Cluster3
 
-helm install --create-namespace  -n velero -f values-restic.yaml velero .
+helm install --create-namespace  -n velero -f values.yaml velero .
 
 # List backups on cluster3
 
