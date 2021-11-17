@@ -1,0 +1,46 @@
+velero:
+  # Deploy Restic daemonSet with Velero 
+  deployRestic: true
+  # Disable snapshots 
+  snapshotsEnabled: false
+  # Init containers to add to the Velero deployment's pod spec. At least one plugin provider image is required.
+  initContainers: 
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.3.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+  configuration:
+    provider: aws
+    backupStorageLocation:
+      # S3 backup default location
+      name: s3  
+      bucket: k8s-days-backup
+      config: 
+        region: eu-west-1
+    volumeSnapshotLocation:
+      name: snapshots
+      config:
+        region: eu-west-1
+    # Set true for backup all pod volumes without having to apply annotation on the pod when used restic
+    defaultVolumesToRestic: true
+  configMaps:
+    # change storage class to avoid create a new storage class in restore case to GCP 
+    change-storage-class-config:
+      labels:
+        velero.io/plugin-config: ""
+        velero.io/change-storage-class: RestoreItemAction
+      data:
+        gp2: standard
+  # ...    
+  # The serviceAccount allows the assumption of the role.
+  credentials: 
+    useSecret: true 
+    name: aws-velero-credentials
+    existingSecret: aws-velero-credentials
+    # secretContents: 
+    #   cloud: |
+    #     [default]
+    #     aws_access_key_id=<AWS_ACCESS_KEY_ID>
+    #     aws_secret_access_key=<AWS_SECRET_ACCESS_KEY>
