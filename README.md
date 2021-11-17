@@ -194,7 +194,7 @@ velero backup describe cluster2 --details
 
 # Install Velero with Restic on Cluster3
 
-helm install --create-namespace  -n velero -f values.yaml velero .
+helm install --create-namespace  -n velero -f values-restic.yaml velero .
 
 # List backups on cluster3
 
