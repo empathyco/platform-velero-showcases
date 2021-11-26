@@ -14,6 +14,7 @@ Kubernetes Backup and Migration Strategies with Velero
   - [Show me the code](#show-me-the-code)
 - [Data Migration](#data-migration)
   - [Show me the code](#show-me-the-code-1)
+- [Slides](#slides)
 - [References](#references)
 
 
@@ -212,6 +213,11 @@ velero restore create --from-backup cluster2 --include-namespaces ghost
 
 kubectl get po -n ghost
 ```
+
+# Slides 
+
+The slides can be found [here](slides/Kubernetes%20Backup%20and%20Migration%20Strategies%20with%20Velero.pdf)
+
 
 # References
 1. [Installation eksctl](https://eksctl.io/introduction/#installation)
